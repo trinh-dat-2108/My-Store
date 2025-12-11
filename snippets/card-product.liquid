@@ -15,7 +15,7 @@
     {% if product.featured_image %}
       <a href="{{ product.url }}">
         <img 
-          src="{{ product.featured_image | image_url: '500x' }}" 
+          src="{{ product.featured_image | image_url: width: 500, height: 500, crop: 'center' }}" 
           alt="{{ product.title }}" 
           width="500" 
           height="500"
