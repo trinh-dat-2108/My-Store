@@ -1,109 +1,87 @@
-<div class="relative w-full flex items-center px-4">
+<div class="flex items-center justify-between w-full">
 
-  
-  <div class="horizontal-nav overflow-x-auto whitespace-nowrap no-scrollbar px-4 py-2 scroll-smooth flex-1 relative
-              [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+   
+    <div class="relative w-full h-0.5 bg-gray-200 mr-6">
+        <div 
+            id="scrollThumb"
+            class="absolute top-0 left-0 h-0.5 bg-black transition-all duration-300"
+            style="width: {{ progress | default: '0%' }};">
+        </div>
+    </div>
+
     
-    <div class="inline-flex gap-2" id="nav-inner">
-      {% for item in items %}
-        <a 
-          href="{{ item.url }}" 
-          class="px-2 py-2 bg-white rounded-full text-sm font-medium hover:bg-gray-100 transition whitespace-nowrap border border-gray-200"
+    <div class="flex items-center gap-3">
+
+       
+        <button 
+             class="btn-slide-hover w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 bg-white transition"
+    aria-label="Previous"
+    onclick="{{ prev_action | default: '' }}"
         >
-          {{ item.label }}
-        </a>
-      {% endfor %}
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 24 24" 
+                 class="w-5 h-5">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M15 6l-6 6 6 6"/>
+            </svg>
+        </button>
+
+       
+        <button 
+            class="btn-slide-hover w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 bg-white transition"
+    aria-label="Next"
+    onclick="{{ next_action | default: '' }}"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 24 24" 
+                 class="w-5 h-5">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M9 6l6 6-6 6"/>
+            </svg>
+        </button>
+
     </div>
-
-  
-    <div class="absolute bottom-0 left-0 h-[3px] bg-[#DDECE5] w-full rounded-full">
-      <div class="h-[3px] bg-[#1F6136] w-0 rounded-full" id="scroll-progress"></div>
-    </div>
-  </div>
- 
-  <div class="flex flex-row gap-2 ml-3">
-  <button 
-    class="scroll-left w-12 h-12 flex items-center justify-center bg-white shadow-sm border border-[#DDECE5] rounded-full
-           hover:bg-gradient-to-r hover:from-green-400 hover:to-green-700 transition-colors duration-300"
-    aria-label="Scroll left"
-  >
-    <svg width="22" height="22" fill="none" stroke="#1F6136" stroke-width="2">
-      <polyline points="14 4 8 11 14 18"/>
-    </svg>
-  </button>
-
-  <button 
-    class="scroll-right w-12 h-12 flex items-center justify-center bg-white shadow-sm border border-[#DDECE5] rounded-full
-           hover:bg-gradient-to-r hover:from-green-400 hover:to-green-700 transition-colors duration-300"
-    aria-label="Scroll right"
-  >
-    <svg width="22" height="22" fill="none" stroke="#1F6136" stroke-width="2">
-      <polyline points="8 4 14 11 8 18"/>
-    </svg>
-  </button>
 </div>
-
-
-</div>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const snippetRoot = document.currentScript.closest('.swiper_controls');
-  const container = snippetRoot.previousElementSibling.querySelector('.featured-collection');
-  const btnLeft = document.querySelector('.scroll-left');
-  const btnRight = document.querySelector('.scroll-right');
-  const progress = document.getElementById('scroll-progress');
-  const cards = container.querySelectorAll('.product');
+document.addEventListener("DOMContentLoaded", function () {
+    const scroller = document.querySelector(".product_scroller");
+    const thumb = document.getElementById("scrollThumb");
 
+    const leftBtn = document.getElementById("scrollLeft");
+    const rightBtn = document.getElementById("scrollRight");
 
-  const cardsPerScroll = 3;
+    if (!scroller || !thumb) return; 
 
+    function updateThumb() {
+        const maxScroll = scroller.scrollWidth - scroller.clientWidth;
 
-  function getScrollAmount() {
-    if (!cards.length) return 0;
-    const gap = parseInt(getComputedStyle(cards[0].parentElement).gap) || 0;
-    const cardWidth = cards[0].offsetWidth;
-    return cardWidth * cardsPerScroll + gap * (cardsPerScroll - 1);
-  }
+        if (maxScroll <= 0) {
+            thumb.style.width = "100%";
+            return;
+        }
 
+        const percent = scroller.scrollLeft / maxScroll;
 
-  function updateButtons() {
-    btnLeft.disabled = container.scrollLeft <= 0;
-    btnRight.disabled = container.scrollLeft + container.clientWidth >= container.scrollWidth - 1;
-  }
+        
+        const thumbWidth = scroller.clientWidth / scroller.scrollWidth;
 
- 
-  function updateProgress() {
-    const scrollWidth = container.scrollWidth - container.clientWidth;
-    const scrollLeft = container.scrollLeft;
-    const percent = (scrollLeft / scrollWidth) * 100;
-    progress.style.width = percent + '%';
-  }
+        thumb.style.width = (thumbWidth * 100) + "%";
+        thumb.style.left = (percent * (100 - thumbWidth * 100)) + "%";
+    }
 
+    if (leftBtn) {
+        leftBtn.addEventListener("click", () => {
+            scroller.scrollBy({ left: -300, behavior: "smooth" });
+        });
+    }
 
-  btnLeft.addEventListener('click', () => {
-    container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-  });
+    if (rightBtn) {
+        rightBtn.addEventListener("click", () => {
+            scroller.scrollBy({ left: 300, behavior: "smooth" });
+        });
+    }
 
+    scroller.addEventListener("scroll", updateThumb);
 
-  btnRight.addEventListener('click', () => {
-    container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-  });
-
-  
-  container.addEventListener('scroll', () => {
-    updateButtons();
-    updateProgress();
-  });
-
-  
-  updateButtons();
-  updateProgress();
-
- 
-  window.addEventListener('resize', () => {
-    updateButtons();
-    updateProgress();
-  });
+    
+    updateThumb();
 });
 </script>

@@ -26,6 +26,10 @@
                     {% endif %}
 
                 </div>
+                 {% render 'horizontal-scroll-nav',
+                 prev_action: 'scrollProductsLeft()',
+                 next_action: 'scrollProductsRight()'
+                %}
             </div>
         </div>
     </div>
