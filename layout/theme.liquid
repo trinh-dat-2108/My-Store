@@ -13,8 +13,6 @@
              corePlugins: { preflight: false },
                 };
         </script>
-
-        <!-- Tailwind CDN minify + defer = load mượt -->
         <script src="https://cdn.tailwindcss.com?min" defer></script>
     </head>
     <body>
@@ -24,6 +22,7 @@
         {% section 'featured' %}
         {% section 'category' %}
         {% section 'product' %}
+        {% section 'product-collection' %}
         <script defer src="{{ 'header.js' | asset_url }}"></script>
     </body>
 </html>

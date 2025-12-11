@@ -1,0 +1,99 @@
+<div class="shopify-section">
+   <div class="section_product_collection px-8">
+    <div class="section_product py-12">
+        <div class="section_product_wapper">
+            <div class="section_content tabs_panels">
+                <div class="tabs_panels_collection">
+                    <featured-collection class="block relative">
+                        <div class="product-collection">
+                            <div class="baner-card">
+                                {% render 'banner-card',
+                                   image: 'assets/garden-of-wellness-shop-season-of-renewal-desktop-banner.png',
+                                   title: 'Healthy Lifestyle',
+                                   button_label: 'Shop Now',
+                                   button_url: '/collections/all'
+                                %}
+                            </div>
+                            <div class="f-column">
+                                {% if section.settings.collection != blank %}
+                                  <div class=" product_scroller products-row flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+                                {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
+                                  <div class="product-card snap-start shrink-0">
+                                    {% render 'card-product', product: product %}
+                                  </div>
+                                {% endfor %}
+                            </div>
+
+                            {% else %}
+                               <p class="text-center text-gray-500">Please select a collection to display products.</p>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </featured-collection>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner-card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Banner title",
+      "default": "Healthy Lifestyle"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_label",
+      "label": "Button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to show products"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+function scrollProductsLeft() {
+    document.querySelector('.product_scroller').scrollBy({
+        left: -300,
+        behavior: 'smooth'
+    });
+}
+
+function scrollProductsRight() {
+    document.querySelector('.product_scroller').scrollBy({
+        left: 300,
+        behavior: 'smooth'
+    });
+}
+</script>
