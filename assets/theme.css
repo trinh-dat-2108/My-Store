@@ -275,7 +275,9 @@ featured-collection .featured-collection {
     overflow: hidden; 
 }
 
-
+.section_content::-webkit-scrollbar {
+  display: none;
+}
 
 
 /*RESPONSIVE*/

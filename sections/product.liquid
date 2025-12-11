@@ -11,16 +11,19 @@
                 </div>
 
                 <div class="section_content mt-8">
-                    {% if section.settings.collection != blank %}
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
-                                {% render 'card-product', product: product %}
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <p class="text-center text-gray-500">Please select a collection to display products.</p>
-                    {% endif %}
-                </div>
+  {% if section.settings.collection != blank %}
+    <div class="flex gap-6 overflow-x-auto pb-4">
+      {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+        <div class="flex-shrink-0 w-72">
+          {% render 'card-product', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-gray-500">Please select a collection to display products.</p>
+  {% endif %}
+</div>
+
             </div>
         </div>
     </div>
