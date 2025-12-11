@@ -13,7 +13,7 @@
                 <div class="section_content">
 
                     {% if section.settings.collection != blank %}
-                        <div class="products-row flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+                        <div class=" product_scroller products-row flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
                             {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
                                 <div class="product-card snap-start shrink-0">
                                     {% render 'card-product', product: product %}
