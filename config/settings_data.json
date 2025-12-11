@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "top-bar": {
+        "type": "top-bar",
+        "settings": {
+          "topbar_center_text": "Welcome to Garden of Wellness Shop",
+          "topbar_facebook_link": "https://facebook.com",
+          "topbar_instagram_link": "https://instagram.com",
+          "topbar_show_social": true
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "store_name": "My Store",
+          "search_placeholder": "What are you looking for?",
+          "signin_text": "Sign in / Register",
+          "menu_1_text": "SHOP",
+          "menu_1_link": "/",
+          "menu_2_text": "BRANDS",
+          "menu_2_link": "/",
+          "menu_3_text": "WELLNESS HUB",
+          "menu_3_link": "/",
+          "menu_4_text": "REVIEW & REWARD",
+          "menu_4_link": "/",
+          "menu_5_text": "BEST DEALS",
+          "menu_5_link": "/"
+        }
+      },
+      "featured": {
+        "type": "featured",
+        "settings": {
+          "left_title": "Wellness starts from within.",
+          "left_link": "",
+          "right_title": "Gentle care for your little ones",
+          "right_link": "",
+          "collection": ""
+        }
+      },
+      "category": {
+        "type": "category",
+        "settings": {
+          "section_title": "Our Categories",
+          "background_color": "#ffffff",
+          "section_padding_top": 40,
+          "section_padding_bottom": 40
+        }
+      },
+      "product": {
+        "type": "product",
+        "settings": {
+          "section_title": "Best Deals",
+          "background_color": "#f0fdf4",
+          "products_to_show": 2,
+          "collection": "thực-phẩm-chức-nang"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
