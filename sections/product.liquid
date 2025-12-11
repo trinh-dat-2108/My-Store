@@ -1,0 +1,64 @@
+<div class="shopify-section" style="background-color: {{ section.settings.background_color }}">
+    <div class="section_template">
+        <div class="section_container px-10 md:px-40">
+            <div class="section_wapper py-12">
+                <div class="section_header text-center">
+                    <div class="section_header_text inline-block">
+                        <h2 class="text_header">
+                            {{ section.settings.section_title }}
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="section_content mt-8">
+                    {% if section.settings.collection != blank %}
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
+                                {% render 'card-product', product: product %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-center text-gray-500">Please select a collection to display products.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Best Deals Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Best Deals"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F0FDF4"
+    },
+    {
+      "type": "number",
+      "id": "products_to_show",
+      "label": "Number of products to show",
+      "default": 6,
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Deals",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

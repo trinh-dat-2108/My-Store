@@ -1,0 +1,154 @@
+<div class="shopify-section">
+  <div class="section section-padding color-scheme-1">
+    <div class="section-inner two-column-layout">
+      <!-- Khối bên trái slide -->
+      <div class="section-left">
+        <div class="multicolumn-slide">
+          <div class="multicolumn-slide-seft-start">
+            <div class="hover-wapper">
+              <div class="h-full">
+                <div class="swiper-slide">
+                  <div class="slide-item-wrap h-full">
+                    <div class="slide-media block-radius">
+                      <motion-element class="block h-full">
+                        <picture class="media-wraper loaded">
+                          <img
+                            src="{{ 'garden-of-wellness-shop-season-of-renewal-desktop-banner.png' | asset_url }}"
+                            width="auto"
+                            height="auto"
+                            alt=""
+                          >
+                        </picture>
+                      </motion-element>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Khối bên phải slide -->
+      <div class="section-right">
+        <div class="gird-banner">
+          <div class="gird-banner-inner">
+            <div class="f-column-gird-banner">
+              <a href="https://w5e0cw-u8.myshopify.com" class="card-media-link">
+                <div class="color-scheme-block-radius">
+                  <div class="card-media w-full h-full">
+                    <motion-element class="block h-full">
+                      <picture class="card-media h-full loaded">
+                        <img src="{{ 'gow-shop-mid-age-couple.png' | asset_url }}"
+                          width="auto"
+                          height="auto"
+                          alt="">
+                      </picture>
+                    </motion-element>
+                  </div>
+                  <div class="card-media-content">
+                    <div class="card-media_content-wapper">
+                      <motion-element class="block card-media-heading">
+                        <h2 class="h2">Willness starts from within.</h2>
+                      </motion-element>
+                      <motion-element class="block card-media-button">
+                        <button class="button-media">
+                          <span class="btn-text">shop now</span>
+                        </button>
+                      </motion-element>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="f-column-gird-banner">
+              <a href="https://w5e0cw-u8.myshopify.com" class="card-media-link">
+                <div class="color-scheme-block-radius">
+                  <div class="card-media w-full h-full">
+                    <motion-element class="block h-full">
+                      <picture class="card-media h-full loaded">
+                        <img src="{{ 'gow-shop-boy-in-his-bath-tub.png' | asset_url }}"
+                          width="auto"
+                          height="auto"
+                           alt="">
+                      </picture>
+                    </motion-element>
+                  </div>
+                  <div class="card-media-content">
+                    <div class="card-media_content-wapper">
+                      <motion-element class="block card-media-heading">
+                        <h2 class="h2">Gentle care for your little ones</h2>
+                      </motion-element>
+                      <motion-element class="block card-media-button">
+                        <button class="button-media">
+                          <span class="btn-text">shop now</span>
+                        </button>
+                      </motion-element>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% style %}
+  h1, h2 {
+    font-family: {{ section.settings.heading_font | json }};
+}
+
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Featured Section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Slide Image"
+    },
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Left Slide Title",
+      "default": "Wellness starts from within."
+    },
+    {
+      "type": "url",
+      "id": "left_link",
+      "label": "Left Slide Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Slide Image"
+    },
+    {
+      "type": "text",
+      "id": "right_title",
+      "label": "Right Slide Title",
+      "default": "Gentle care for your little ones"
+    },
+    {
+      "type": "url",
+      "id": "right_link",
+      "label": "Right Slide Link"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Optional Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Section",
+      "category": "Home page"
+    }
+  ]
+}
+{% endschema %}
+
