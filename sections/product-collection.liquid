@@ -1,41 +1,59 @@
 <div class="shopify-section">
-   <div class="section_product_collection px-8">
-    <div class="section_product py-12">
-        <div class="section_product_wapper">
-            <div class="section_content tabs_panels">
-                <div class="tabs_panels_collection">
-                    <featured-collection class="block relative">
-                        <div class="product-collection">
-                            <div class="baner-card">
-                                {% render 'banner-card',
-                                   image: 'assets/garden-of-wellness-shop-season-of-renewal-desktop-banner.png',
-                                   title: 'Healthy Lifestyle',
-                                   button_label: 'Shop Now',
-                                   button_url: '/collections/all'
-                                %}
-                            </div>
-                            <div class="f-column">
-                                {% if section.settings.collection != blank %}
-                                  <div class=" product_scroller products-row flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
-                                {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
-                                  <div class="product-card snap-start shrink-0">
-                                    {% render 'card-product', product: product %}
-                                  </div>
-                                {% endfor %}
-                            </div>
+  <div class="section_product_collection px-10 md:px-40">
+    <div class="section_product py-20">
+      <div class="section_product_wapper">
+        <div class="section_content tabs_panels">
+          <div class="tabs_panels_collection">
+            <featured-collection class="block relative">
+              <!-- Grid container thay cho flex -->
+              <div class="grid grid-flow-col auto-cols-max gap-0 overflow-x-auto scroll-smooth snap-x snap-mandatory product-collection py-3">
 
-                            {% else %}
-                               <p class="text-center text-gray-500">Please select a collection to display products.</p>
-                            {% endif %}
-                            </div>
-                        </div>
-                    </featured-collection>
+                <!-- Banner card -->
+                <div class="snap-start flex-shrink-0 w-[240px] baner-card m-0 p-0">
+                  {% render 'banner-card',
+                     image: 'assets/garden-of-wellness-shop-season-of-renewal-desktop-banner.png',
+                     title: 'Healthy Lifestyle',
+                     button_label: 'Shop Now',
+                     button_url: '/collections/all'
+                  %}
                 </div>
-            </div>
+
+                <!-- Product list -->
+                <div class="flex gap-0 f-column">
+                  {% if section.settings.collection != blank %}
+                    {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
+                      <div class="snap-start flex-shrink-0 w-[240px] h-[470px] rounded-none f-column product-card m-0 p-0 border-0 shadow-none bg-transparent">
+                        {% render 'card-product', product: product %}
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <p class="text-center text-gray-500 flex-shrink-0 w-[350px] h-[300px] flex items-center justify-center f-column m-0 p-0">
+                      Please select a collection to display products.
+                    </p>
+                  {% endif %}
+                </div>
+              </div>
+              {% render 'horizontal-scroll-nav',
+                 prev_action: 'scrollProductsLeft()',
+                 next_action: 'scrollProductsRight()'
+              %}
+            </featured-collection>
+          </div>
         </div>
+      </div>
     </div>
-   </div>
-</div>
+  </div>
+</div> 
+<style>
+  .product-collection::-webkit-scrollbar {
+  display: none; 
+}
+
+.product-collection {
+  scrollbar-width: none; 
+}
+</style>
+
 
 {% schema %}
 {
@@ -84,14 +102,14 @@
 
 <script>
 function scrollProductsLeft() {
-    document.querySelector('.product_scroller').scrollBy({
+    document.querySelector('.product-collection').scrollBy({
         left: -300,
         behavior: 'smooth'
     });
 }
 
 function scrollProductsRight() {
-    document.querySelector('.product_scroller').scrollBy({
+    document.querySelector('.product-collection').scrollBy({
         left: 300,
         behavior: 'smooth'
     });

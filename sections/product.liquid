@@ -27,8 +27,8 @@
 
                 </div>
                  {% render 'horizontal-scroll-nav',
-                 prev_action: 'scrollProductsLeft()',
-                 next_action: 'scrollProductsRight()'
+                 prev_action: 'scrollsProductsLeft()',
+                 next_action: 'scrollsProductsRight()'
                 %}
             </div>
         </div>
@@ -73,14 +73,14 @@
 {% endschema %}
 
 <script>
-function scrollProductsLeft() {
+function scrollsProductsLeft() {
     document.querySelector('.product_scroller').scrollBy({
         left: -300,
         behavior: 'smooth'
     });
 }
 
-function scrollProductsRight() {
+function scrollsProductsRight() {
     document.querySelector('.product_scroller').scrollBy({
         left: 300,
         behavior: 'smooth'

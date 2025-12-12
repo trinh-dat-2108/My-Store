@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between w-full">
 
-   
+    <!-- Progress Bar -->
     <div class="relative w-full h-0.5 bg-gray-200 mr-6">
         <div 
             id="scrollThumb"
@@ -9,10 +9,10 @@
         </div>
     </div>
 
-    
+    <!-- Buttons -->
     <div class="flex items-center gap-3">
 
-       
+        <!-- Prev Button -->
         <button 
              class="btn-slide-hover w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 bg-white transition"
     aria-label="Previous"
@@ -25,7 +25,7 @@
             </svg>
         </button>
 
-       
+        <!-- Next Button -->
         <button 
             class="btn-slide-hover w-12 h-12 flex items-center justify-center rounded-full border border-gray-300 bg-white transition"
     aria-label="Next"
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const leftBtn = document.getElementById("scrollLeft");
     const rightBtn = document.getElementById("scrollRight");
 
-    if (!scroller || !thumb) return; 
+    if (!scroller || !thumb) return; // chống lỗi khi thiếu phần tử
 
     function updateThumb() {
         const maxScroll = scroller.scrollWidth - scroller.clientWidth;
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const percent = scroller.scrollLeft / maxScroll;
 
-        
+        // tỷ lệ chiều rộng của thumb
         const thumbWidth = scroller.clientWidth / scroller.scrollWidth;
 
         thumb.style.width = (thumbWidth * 100) + "%";
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     scroller.addEventListener("scroll", updateThumb);
 
-    
+    // chạy lần đầu
     updateThumb();
 });
 </script>
