@@ -64,6 +64,16 @@
           "products_to_show": 8,
           "collection": "thực-phẩm-chức-nang"
         }
+      },
+      "product-collection": {
+        "type": "product-collection",
+        "settings": {
+          "banner_title": "Healthy Lifestyle",
+          "banner_button_label": "Shop Now",
+          "banner_button_url": "",
+          "collection": "thực-phẩm-chức-nang",
+          "products_to_show": 6
+        }
       }
     },
     "content_for_index": []
